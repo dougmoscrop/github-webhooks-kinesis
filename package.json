@@ -1,0 +1,44 @@
+{
+  "name": "github-webhooks-kinesis",
+  "version": "0.0.0",
+  "description": "Make a Kinesiss Stream out of GitHub Webhooks!",
+  "main": "README.md",
+  "scripts": {
+    "postinstall": "npm prune",
+    "test": "nyc --all ava",
+    "posttest": "eslint .",
+    "deploy": "sls deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/dougmoscrop/github-webhooks-kinesis.git"
+  },
+  "keywords": [
+    "tool",
+    "github",
+    "webhooks",
+    "kinesis"
+  ],
+  "author": "Doug Moscrop <doug.moscrop@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dougmoscrop/github-webhooks-kinesis/issues"
+  },
+  "homepage": "https://github.com/dougmoscrop/github-webhooks-kinesis#readme",
+  "dependencies": {
+    "koa": "1.2.4",
+    "raw-body": "2.2.0",
+    "serverless-http": "1.4.2",
+    "timing-safe-equal": "1.0.0"
+  },
+  "devDependencies": {
+    "ava": "^0.18.1",
+    "aws-sdk": "^2.12.0",
+    "eslint": "^3.15.0",
+    "nock": "^9.0.5",
+    "nyc": "^10.1.2",
+    "serverless-plugin-include-dependencies": "^1.2.0",
+    "supertest": "^3.0.0",
+    "supertest-as-promised": "^4.0.2"
+  }
+}

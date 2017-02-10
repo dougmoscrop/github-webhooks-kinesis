@@ -1,0 +1,52 @@
+service: github-webhooks-kinesis
+
+provider:
+  name: aws
+  cfLogs: true
+  runtime: nodejs4.3
+  iamRoleStatements:
+    - Effect: Allow
+      Action: kinesis:PutRecord
+      Resource:
+        "Fn::GetAtt":
+          - KinesisStream
+          - Arn
+
+plugins:
+  - serverless-plugin-include-dependencies
+
+package:
+  exclude:
+    - "*/**"
+  include:
+    - webhook.js
+
+functions:
+  webhook:
+    handler: webhook.handler
+    memory: 128
+    environment:
+      secret: ${opt:secret}
+      kinesis_stream:
+        Ref:
+          KinesisStream
+    events:
+      - http: POST /
+
+default:
+  shards: 1
+
+resources:
+  Outputs:
+    KinesisArn:
+      Description: Webhook Kinesis stream ARN
+      Value:
+        "Fn::GetAtt":
+          - KinesisStream
+          - Arn
+  Resources:
+    KinesisStream:
+      Type: "AWS::Kinesis::Stream"
+      Properties:
+        Name: github-webhooks
+        ShardCount: ${opt:shards, self:default.shards}
