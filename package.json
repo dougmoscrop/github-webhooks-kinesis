@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/dougmoscrop/github-webhooks-kinesis#readme",
   "dependencies": {
-    "koa": "1.2.4",
+    "koa": "1.2.5",
     "raw-body": "2.2.0",
     "serverless-http": "1.4.2",
     "timing-safe-equal": "1.0.0"
